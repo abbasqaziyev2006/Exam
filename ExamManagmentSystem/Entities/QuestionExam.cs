@@ -8,6 +8,7 @@ namespace ExamSystem.Domain.Entities
 {
     public class QuestionExam
     {
+        public int Id { get; set; }
         public Question? Question { get; set; }
         public int QuestionId { get; set; }
         public int ExamId { get; set; }

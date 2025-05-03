@@ -20,7 +20,7 @@ namespace ExamSystem.Infrastructure.EfCore.DataContext
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=RUBIS15\\SQLEXPRESS;Database=SystemManagment;Trusted_Connection=true;TrustedServerCertificate=true");
+            optionsBuilder.UseSqlServer("Server=RUBIS15\\SQLEXPRESS;Database=SystemManagment;Trusted_Connection=true;TrustServerCertificate=true");
 
 
         }
