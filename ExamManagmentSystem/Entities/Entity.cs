@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ExamSystem.Application.DTOs.QuestionExamDtos
+namespace ExamSystem.Domain.Entities
 {
-    internal class QuestionExamDto
+    public class Entity
     {
+        public int Id { get; set; }
     }
 }
