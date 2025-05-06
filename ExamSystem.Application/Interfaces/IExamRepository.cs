@@ -3,7 +3,7 @@ using ExamSystem.Domain.Entities;
 
 namespace ExamSystem.Application.Interfaces
 {
-    public interface IExamService
+    public interface IExamRepository
     {
         ExamDto GetById(int id);
         IEnumerable<ExamDto> GetAll();
