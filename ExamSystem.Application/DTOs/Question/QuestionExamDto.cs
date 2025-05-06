@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ExamSystem.Application.DTOs.QuestionDtos.ExamSystem.Application.DTOs.QuestionDtos;
+﻿using ExamSystem.Application.DTOs.QuestionDtos;
 
 namespace ExamSystem.Application.DTOs.Question
 {

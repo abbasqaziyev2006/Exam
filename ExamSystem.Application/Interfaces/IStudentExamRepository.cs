@@ -1,13 +1,13 @@
-﻿using ExamSystem.Domain.Entities;
+﻿using ExamSystem.Application.DTOs.Student;
+using ExamSystem.Domain.Entities;
 
 namespace ExamSystem.Application.Interfaces
 {
-    public interface IStudentExamRepository
+    public interface IStudentExamService
     {
-        Task<StudentExam> GetByIdAsync(int id);
-        Task<IEnumerable<StudentExam>> GetByStudentIdAsync(int studentId);
-        Task AddAsync(StudentExam studentExam);
-        Task UpdateAsync(StudentExam studentExam);
+        StudentExamDto GetById(int id);
+        IEnumerable<StudentExamDto> GetExamsByStudentId(int studentId);
+        void Add(StudentExamDto studentExamDto);
     }
 
 }

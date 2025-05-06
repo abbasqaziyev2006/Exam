@@ -7,7 +7,12 @@ using ExamSystem.Domain.Entities;
 
 namespace ExamSystem.Domain.Interfaces
 {
-    public interface IQuestionRepository : IRepository<Question>
+    public interface IQuestionRepository
     {
+        Question GetById(int id);
+        IEnumerable<Question> GetQuestionsByExamId(int examId);
+        void Add(Question question);
+        void Update(Question question);
+        void Delete(int id);
     }
 }

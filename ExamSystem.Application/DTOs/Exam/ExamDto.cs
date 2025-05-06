@@ -1,4 +1,4 @@
-﻿using ExamSystem.Application.DTOs.QuestionDtos.ExamSystem.Application.DTOs.QuestionDtos;
+﻿using ExamSystem.Application.DTOs.QuestionDtos;
 
 namespace ExamSystem.Application.DTOs.Exam
 {

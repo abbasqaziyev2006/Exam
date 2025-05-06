@@ -27,5 +27,3 @@ namespace ExamSystem.Application.DTOs.TeacherDtos
             public required string Password { get; set; }
         }
     }
-
-}
