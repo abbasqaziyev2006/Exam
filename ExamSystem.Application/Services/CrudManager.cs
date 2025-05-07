@@ -1,73 +1,92 @@
 ﻿using AutoMapper;
+using ExamSystem.Application.AutoMapping;
+using ExamSystem.Application.Interfaces;
+using ExamSystem.Domain.Entities;
 using ExamSystem.Domain.Interfaces;
+using Microsoft.EntityFrameworkCore.Query;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 
 namespace ExamSystem.Application.Services
 {
-    public class CrudManager<TEntity, TDto, TCreateDto, TUpdateDto>
-        where TEntity : class
+    public class CrudManager<TEntity, TDto, TCreateDto, TUpdateDto> : ICrudService<TEntity, TDto, TCreateDto, TUpdateDto>
+where TEntity : Entity
     {
-        protected readonly ICrudRepository<TEntity> _repository;
-        protected readonly IMapper _mapper;
-        private IQuestionRepository questionRepository;
+        protected readonly ICrudRepository<TEntity> Repository;
+        protected readonly IMapper Mapper;
 
-        public ITeacherRepository TeacherRepository { get; }
-        public IMapper Mapper { get; }
-        public IStudentRepository StudentRepository { get; }
-
-        public CrudManager(ICrudRepository<TEntity> repository, IMapper mapper)
+        public CrudManager()
         {
-            _repository = repository;
-            _mapper = mapper;
+            Repository = new EfCoreRepository<TEntity>();
+
+            var config = new MapperConfiguration(cfg => {
+                cfg.AddProfile<MappingProfile>();
+
+            });
+
+            Mapper = config.CreateMapper();
         }
 
-        public CrudManager(ITeacherRepository teacherRepository, IMapper mapper)
+        public virtual TDto Add(TCreateDto createDto)
         {
-            TeacherRepository = teacherRepository;
-            Mapper = mapper;
+            var entity = Mapper.Map<TEntity>(createDto);
+            var addedEntity = Repository.Add(entity);
+
+            return Mapper.Map<TDto>(addedEntity);
         }
 
-        public CrudManager(IStudentRepository studentRepository, IMapper mapper)
+        public TDto Delete(int id)
         {
-            StudentRepository = studentRepository;
-            Mapper = mapper;
+            var exist = Repository.GetById(id);
+
+            if (exist == null)
+                throw new InvalidOperationException("Entity not found");
+
+            var deletedEntity = Repository.Delete(exist);
+
+            return Mapper.Map<TDto>(deletedEntity);
         }
 
-        public CrudManager(IQuestionRepository questionRepository, IMapper mapper)
+        public TDto Get(Expression<Func<TEntity, bool>> predicate, bool asNoTracking = false, Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>? include = null)
         {
-            this.questionRepository = questionRepository;
-            Mapper = mapper;
+            var entity = Repository.Get(predicate, asNoTracking, include);
+
+            if (entity == null)
+                throw new InvalidOperationException("Entity not found");
+
+            return Mapper.Map<TDto>(entity);
+        }
+
+        public List<TDto> GetAll(Expression<Func<TEntity, bool>>? predicate = null, bool asNoTracking = false, Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>? include = null, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null)
+        {
+            var entities = Repository.GetAll(predicate, asNoTracking, include, orderBy);
+
+            if (entities == null || !entities.Any())
+                throw new InvalidOperationException("No entities found");
+
+            return Mapper.Map<List<TDto>>(entities);
         }
 
         public TDto GetById(int id)
         {
-            var entity = _repository.GetById(id);
-            return _mapper.Map<TDto>(entity);
+            var entity = Repository.GetById(id);
+
+            if (entity == null)
+                throw new InvalidOperationException("Entity not found");
+
+            return Mapper.Map<TDto>(entity);
         }
 
-
-        public IEnumerable<TDto> GetAll()
+        public virtual TDto Update(TUpdateDto updateDto)
         {
-            var entities = _repository.GetAll();
-            return _mapper.Map<IEnumerable<TDto>>(entities);
-        }
+            var updatedEntity = Mapper.Map<TEntity>(updateDto);
 
+            var existingEntity = Repository.GetById(updatedEntity.Id);
 
-        public void Add(TCreateDto createDto)
-        {
-            var entity=_mapper.Map<TEntity>(createDto);
-            _repository.Add(entity);
-        }
+            if (existingEntity == null)
+                throw new InvalidOperationException("Entity not found");
 
-        public void Update(TUpdateDto updateDto)
-        {
-            var entity = _mapper.Map<TEntity>(updateDto);
-            _repository.Update(entity);
-        }
-
-        public void Delete(int id)
-        {
-            _repository.Delete(id);
+            return Mapper.Map<TDto>(Repository.Update(updatedEntity));
         }
     }
     

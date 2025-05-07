@@ -18,13 +18,13 @@ namespace ExamSystem.Application.Services
         public QuestionDto GetById(int id)
         {
             var question = _questionRepository.GetById(id);
-            return _mapper.Map<QuestionDto>(question);
+            return Mapper.Map<QuestionDto>(question);
         }
 
         public IEnumerable<QuestionDto> GetByExamId(int examId)
         {
             var questions = _questionRepository.GetByExamId(examId);
-            return _mapper.Map<IEnumerable<QuestionDto>>(questions);
+            return Mapper.Map<IEnumerable<QuestionDto>>(questions);
         }
     }
 }

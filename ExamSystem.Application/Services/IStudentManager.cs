@@ -18,7 +18,7 @@ namespace ExamSystem.Application.Services
         public StudentDto GetByUsername(string username)
         {
             var student = _studentRepository.GetByUsername(username);
-            return _mapper.Map<StudentDto>(student);
+            return Mapper.Map<StudentDto>(student);
         }
 
     }

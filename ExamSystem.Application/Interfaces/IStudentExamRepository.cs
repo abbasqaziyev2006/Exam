@@ -3,11 +3,11 @@ using ExamSystem.Domain.Entities;
 
 namespace ExamSystem.Application.Interfaces
 {
-    public interface IStudentExamService
+    public interface IStudentExamService : ICrudService<StudentExam,StudentExamDto, StudentExamCreateDto,StudentExamUpdateDto>
     {
-        StudentExamDto GetById(int id);
-        IEnumerable<StudentExamDto> GetExamsByStudentId(int studentId);
-        void Add(StudentExamDto studentExamDto);
+        //StudentExamDto GetById(int id);
+        //IEnumerable<StudentExamDto> GetExamsByStudentId(int studentId);
+        //void Add(StudentExamDto studentExamDto);
     }
 
 }
