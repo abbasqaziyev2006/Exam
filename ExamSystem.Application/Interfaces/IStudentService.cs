@@ -8,13 +8,7 @@ using ExamSystem.Domain.Entities;
 
 namespace ExamSystem.Application.Interfaces
 {
-    public interface IStudentService
+    public interface IStudentService : ICrudService<Student, StudentDto, StudentCreateDto,StudentUpdateDto>
     {
-        StudentDto GetById(int id);
-        IEnumerable<StudentDto> GetAll();
-        StudentDto GetByUsername(string username);
-        void Add(StudentDto studentDto);
-        void Update(StudentDto studentDto);
-        void Delete(int id);
     }
 }

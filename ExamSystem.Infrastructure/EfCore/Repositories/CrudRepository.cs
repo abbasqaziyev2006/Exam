@@ -8,9 +8,6 @@ namespace ExamSystem.Infrastructure.EfCore.Repositories
 {
     public class CrudRepository
     {
-        // This class is a placeholder for the CRUD repository implementation.
-        // You can implement methods for Create, Read, Update, and Delete operations here.
-        // For example:
         public void Add<T>(T entity)
         {
             // Code to add entity to the database

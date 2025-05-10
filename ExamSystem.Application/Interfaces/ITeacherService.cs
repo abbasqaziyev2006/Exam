@@ -1,19 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ExamSystem.Application.DTOs.TeacherDtos;
+﻿using ExamSystem.Application.DTOs.TeacherDtos;
+using ExamSystem.Domain.Entities;
 
 namespace ExamSystem.Application.Interfaces
 {
-    public interface ITeacherService
+    public interface ITeacherService:ICrudService<Teacher, TeacherDto,TeacherCreateDto, TeacherUpdateDto>
     {
-        TeacherDto GetById(int id);
-        TeacherDto GetByUsername(string username);
-        IEnumerable<TeacherDto> GetAll();
-        void Add(TeacherDto teacherDto);
-        void Update(TeacherDto teacherDto);
-        void Delete(int id);
     }
 }

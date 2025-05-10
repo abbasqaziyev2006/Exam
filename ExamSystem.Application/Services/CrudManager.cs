@@ -1,22 +1,20 @@
-﻿using AutoMapper;
+﻿using System.Linq.Expressions;
+using AutoMapper;
 using ExamSystem.Application.AutoMapping;
 using ExamSystem.Application.Interfaces;
 using ExamSystem.Domain.Entities;
 using ExamSystem.Domain.Interfaces;
+using ExamSystem.Infrastructure.EfCore.Repositories;
 using Microsoft.EntityFrameworkCore.Query;
-using System.Collections.Generic;
-using System.Linq.Expressions;
 
 namespace ExamSystem.Application.Services
 {
-    public class CrudManager<TEntity, TDto, TCreateDto, TUpdateDto> : ICrudService<TEntity, TDto, TCreateDto, TUpdateDto>
-where TEntity : Entity
+    public class CrudManager<TEntity, TDto, TCreateDto, TUpdateDto> : ICrudService<TEntity, TDto, TCreateDto, TUpdateDto> where TEntity : Entity
     {
-        protected readonly ICrudRepository<TEntity> Repository;
+        protected readonly IRepository<TEntity> Repository;
         protected readonly IMapper Mapper;
-        private ITeacherRepository teacherRepository;
 
-        public CrudManager(IQuestionRepository questionRepository, IMapper mapper)
+        public CrudManager(IMapper mapper)
         {
             Repository = new EfCoreRepository<TEntity>();
 
@@ -26,17 +24,6 @@ where TEntity : Entity
             });
 
             Mapper = config.CreateMapper();
-            Mapper = mapper;
-        }
-
-        public CrudManager(IStudentRepository studentRepository, IMapper mapper)
-        {
-            Mapper = mapper;
-        }
-
-        public CrudManager(ITeacherRepository teacherRepository, IMapper mapper)
-        {
-            this.teacherRepository = teacherRepository;
             Mapper = mapper;
         }
 

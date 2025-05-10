@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ExamManagmentSystem\ExamSystem.Domain.csproj" />
+    <ProjectReference Include="..\ExamSystem.Infrastructure\ExamSystem.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

@@ -18,7 +18,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ExamManagmentSystem\ExamSystem.Domain.csproj" />
-    <ProjectReference Include="..\ExamSystem.Application\ExamSystem.Application.csproj" />
   </ItemGroup>
 
 </Project>
