@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace ExamSystem.Domain.Entities
 {
-    public class StudentAnswer
+    public class StudentAnswer : Entity
     {
-        public int Id { get; set; }
         public int QuestionId { get; set; }
         public Question Question { get; set; } = new();
         public StudentExam StudentExam { get; set; } = new();

@@ -26,5 +26,25 @@ namespace ExamSystem.Application.Services
             var questions = _questionRepository.GetByExamId(examId);
             return Mapper.Map<IEnumerable<QuestionDto>>(questions);
         }
+
+        public IEnumerable<QuestionDto> GetQuestionsByExamId(int examId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Add(QuestionDto questionDto)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(QuestionDto questionDto)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IQuestionService.Delete(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

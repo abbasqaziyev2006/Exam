@@ -14,8 +14,9 @@ where TEntity : Entity
     {
         protected readonly ICrudRepository<TEntity> Repository;
         protected readonly IMapper Mapper;
+        private ITeacherRepository teacherRepository;
 
-        public CrudManager()
+        public CrudManager(IQuestionRepository questionRepository, IMapper mapper)
         {
             Repository = new EfCoreRepository<TEntity>();
 
@@ -25,6 +26,18 @@ where TEntity : Entity
             });
 
             Mapper = config.CreateMapper();
+            Mapper = mapper;
+        }
+
+        public CrudManager(IStudentRepository studentRepository, IMapper mapper)
+        {
+            Mapper = mapper;
+        }
+
+        public CrudManager(ITeacherRepository teacherRepository, IMapper mapper)
+        {
+            this.teacherRepository = teacherRepository;
+            Mapper = mapper;
         }
 
         public virtual TDto Add(TCreateDto createDto)

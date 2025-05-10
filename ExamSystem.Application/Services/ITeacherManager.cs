@@ -15,10 +15,30 @@ namespace ExamSystem.Application.Services
             _teacherRepository = teacherRepository;
         }
 
+        public void Add(TeacherDto teacherDto)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<TeacherDto> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
         public TeacherDto GetByUsername(string username)
         {
             var teacher = _teacherRepository.GetByUsername(username);
             return Mapper.Map<TeacherDto>(teacher);
+        }
+
+        public void Update(TeacherDto teacherDto)
+        {
+            throw new NotImplementedException();
+        }
+
+        void ITeacherService.Delete(int id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

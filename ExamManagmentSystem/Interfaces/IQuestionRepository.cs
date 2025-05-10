@@ -14,5 +14,6 @@ namespace ExamSystem.Domain.Interfaces
         void Add(Question question);
         void Update(Question question);
         void Delete(int id);
+        object GetByExamId(int examId);
     }
 }
