@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ExamSystem.Application.DTOs.Student
+﻿namespace ExamSystem.Application.DTOs.Student
 {
     public class StudentExamDto
     {
@@ -29,4 +23,3 @@ namespace ExamSystem.Application.DTOs.Student
         public int WrongCount { get; set; }
     }
 }
-

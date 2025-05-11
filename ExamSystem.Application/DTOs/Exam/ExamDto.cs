@@ -20,5 +20,4 @@ namespace ExamSystem.Application.DTOs.Exam
         public string? Title { get; set; }
         public List<int>? QuestionIds { get; set; }
     }
-
 }
