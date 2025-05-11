@@ -12,7 +12,7 @@ namespace SimpleExamSystem
 
         static void Main()
         {
-            // Dosya varsa oku, yoksa varsayılan 5 soruyu yükle
+
             if (File.Exists("questions.json"))
             {
                 try
@@ -23,7 +23,7 @@ namespace SimpleExamSystem
                 catch (Exception ex)
                 {
                     Console.WriteLine("Error reading questions file: " + ex.Message);
-                    // Varsayılan soruları yükle
+
                     LoadDefaultQuestions();
                 }
             }
